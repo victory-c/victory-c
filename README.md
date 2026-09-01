@@ -29,14 +29,25 @@ validator that the writer and the evaluator share.
 
 ### Open source
 
-Contributing upstream to:
+**[Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp)** *(1.1k ★)* — listed
+contributor. Three PRs merged, all in the same vein: the server crashed on data Garmin
+legitimately returns.
 
-- [**NousResearch/hermes-agent**](https://github.com/NousResearch/hermes-agent/pulls?q=author%3Avictory-c)
-  *(~239k ★)* — configurable fallback chain for web extraction
+- [#253](https://github.com/Taxuspt/garmin_mcp/pull/253) — harden null-section handling
+  across HRV, sleep, progress, and body-battery. Garmin omits whole sections for days you
+  didn't wear the watch; the server assumed they were always present.
+- [#254](https://github.com/Taxuspt/garmin_mcp/pull/254) — bound Garmin call duration, so
+  one stalled upstream request can't hang the whole MCP server.
+- [#250](https://github.com/Taxuspt/garmin_mcp/pull/250) — surface gear notes in
+  `get_gear` output.
+
+Open elsewhere:
+
 - [**clash-verge-rev**](https://github.com/clash-verge-rev/clash-verge-rev/pulls?q=author%3Avictory-c)
-  *(~141k ★)* — proxy import from share links; tray menu update performance
-- [**Taxuspt/garmin_mcp**](https://github.com/Taxuspt/garmin_mcp/pulls?q=author%3Avictory-c)
-  *(~1.1k ★)* — null-section hardening, bounded request timeouts, gear notes
+  *(141k ★)* — import proxies from share links; tray menu updates without a full rebuild
+- [**NousResearch/hermes-agent**](https://github.com/NousResearch/hermes-agent/pulls?q=author%3Avictory-c)
+  *(239k ★)* — configurable fallback chain for web extraction; decouple Gemini reasoning
+  effort from thought-summary output
 
 ### Elsewhere
 
