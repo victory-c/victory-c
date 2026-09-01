@@ -29,25 +29,40 @@ validator that the writer and the evaluator share.
 
 ### Open source
 
-**[Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp)** *(1.1k ★)* — listed
-contributor. Three PRs merged, all in the same vein: the server crashed on data Garmin
-legitimately returns.
+#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.1k ★, listed contributor*
 
-- [#253](https://github.com/Taxuspt/garmin_mcp/pull/253) — harden null-section handling
-  across HRV, sleep, progress, and body-battery. Garmin omits whole sections for days you
-  didn't wear the watch; the server assumed they were always present.
-- [#254](https://github.com/Taxuspt/garmin_mcp/pull/254) — bound Garmin call duration, so
-  one stalled upstream request can't hang the whole MCP server.
-- [#250](https://github.com/Taxuspt/garmin_mcp/pull/250) — surface gear notes in
-  `get_gear` output.
+Garmin's API returns explicit `null` for sections you have no data in, so `resp.get(k, {})`
+yields `None` — the default only applies when the key is *absent*. Most of my merged work
+there is that bug and its relatives.
 
-Open elsewhere:
+| | |
+|---|---|
+| [**#253**](https://github.com/Taxuspt/garmin_mcp/pull/253) ✅ merged | Five unguarded null-section crashes — HRV baseline, progress-summary `.items()`, the sleep-score chain, body-battery event iteration, and a GraphQL `{"data": null}` that slipped past the existing guard. Each fix ships a regression test feeding the explicit-null payload. |
+| [**#254**](https://github.com/Taxuspt/garmin_mcp/pull/254) ✅ merged | Garmin occasionally stalls a request indefinitely; because every tool calls the client synchronously, one stalled call hung the *whole* MCP server until the client's ~4-minute timeout fired (issue #248). Bounds each proxied call on a daemon worker thread, surfacing a retry-able `TimeoutError` instead. Configurable via `GARMIN_MCP_CALL_TIMEOUT`. |
+| [**#250**](https://github.com/Taxuspt/garmin_mcp/pull/250) ✅ merged | Gear notes never appeared, because the pinned client reads the legacy `filterGear` endpoint and Notes only exists on `/gear/v2/list`. Joins the two — the v2 response hyphenates its UUIDs and the legacy one doesn't, so the join normalizes them first. |
+| [**#276**](https://github.com/Taxuspt/garmin_mcp/pull/276) | Per-sport heart-rate zone reads and writes, via read-modify-write so unrelated sport profiles aren't clobbered. Verified against a live account; documents the quirk that Garmin won't persist a `CUSTOM` calculation method. |
+| [**#170**](https://github.com/Taxuspt/garmin_mcp/pull/170) | There's a Dockerfile but no published image, so everyone builds locally. Publishes multi-arch (amd64 + arm64) images to GHCR on release — no extra secrets, just `GITHUB_TOKEN`. |
+| [**#167**](https://github.com/Taxuspt/garmin_mcp/pull/167) | The security workflow had a `# Add pip-audit here if desired` placeholder where the dependency scan should be. Wires up `pip-audit` and clears the one CVE it flags — h11 request smuggling (CVE-2025-43859). |
 
-- [**clash-verge-rev**](https://github.com/clash-verge-rev/clash-verge-rev/pulls?q=author%3Avictory-c)
-  *(141k ★)* — import proxies from share links; tray menu updates without a full rebuild
-- [**NousResearch/hermes-agent**](https://github.com/NousResearch/hermes-agent/pulls?q=author%3Avictory-c)
-  *(239k ★)* — configurable fallback chain for web extraction; decouple Gemini reasoning
-  effort from thought-summary output
+#### [clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev) — *141k ★*
+
+- [**#7672**](https://github.com/clash-verge-rev/clash-verge-rev/pull/7672) — importing a single
+  `vless://` / `trojan://` / `ss://` share link required creating a throwaway subscription and
+  pasting URIs into Edit Proxy. Adds real import.
+- [**#7652**](https://github.com/clash-verge-rev/clash-verge-rev/pull/7652) — every proxy
+  selection rebuilt the entire native tray menu. On profiles with thousands of nodes that meant
+  stalls and memory spikes. Caches menu handles and updates only the two items that changed.
+
+#### [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — *239k ★*
+
+- [**#64036**](https://github.com/NousResearch/hermes-agent/pull/64036) — reasoning-visibility
+  leak on Gemini/Vertex: with `show_reasoning: false`, users still got dozens of raw
+  thought-summary blocks. Two causes — effort and visibility were coupled in the request
+  builder, and Vertex returns summaries *untagged* unless you set `thought_tag_marker`, so
+  nothing downstream could key on them. Splits the two knobs to match Google's own API.
+- [**#68524**](https://github.com/NousResearch/hermes-agent/pull/68524) — `web_extract` had one
+  backend; expired credits or a rate limit meant total failure plus a gateway restart. Adds a
+  configurable fallback chain.
 
 ### Elsewhere
 
