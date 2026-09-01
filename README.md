@@ -12,6 +12,11 @@ fine on a cheaper model.
 **[fitpet](https://github.com/victory-c/fitpet)** — a Claude Code status-line companion that
 grows from real Garmin training load.
 
+**[vibeapply](https://github.com/victory-c/vibeapply)** — an AI-native job-application
+copilot: a browser extension that rides along on job boards, backed by a structured candidate
+profile and evidence bank. Scaffolded with agents, then audited — all nine findings fixed
+before any feature work.
+
 **[cal-dining-scanner](https://github.com/victory-c/cal-dining-scanner)** — watches UC Berkeley
 dining menus for the foods you care about and emails you when they appear. One command to set
 up, runs free on GitHub Actions.
