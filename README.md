@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=0:150F0B,55:1E1813,100:EFAC44&height=180&section=header&text=Victor%20Chun&fontSize=46&fontColor=EAE6DD&fontAlignY=38&animation=fadeIn&desc=Data%20Science%20%2B%20CogSci%20%40%20UC%20Berkeley%20%E2%80%A2%20Local-first%20tools%20%E2%80%A2%20Open%20source&descSize=17&descAlignY=58&descColor=EFAC44)
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:150F0B,55:1E1813,100:EFAC44&height=180&section=header&text=Victor%20Chun&fontSize=46&fontColor=EAE6DD&fontAlignY=38&desc=Data%20Science%20%2B%20CogSci%20%40%20UC%20Berkeley%20%E2%80%A2%20Local-first%20tools%20%E2%80%A2%20Open%20source&descSize=17&descAlignY=58&descColor=EFAC44)
 
 <div align="center">
 
