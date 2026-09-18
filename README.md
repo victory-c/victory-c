@@ -29,6 +29,12 @@ more wrong than you'd think.
 🛠️ Local-first tools &nbsp;•&nbsp; 🤖 AI agent tooling &nbsp;•&nbsp; 🚴 Endurance data &nbsp;•&nbsp; 🔓 Open source
 </p>
 
+<p align="center">
+  <a href="https://github.com/victory-c/victory-c/tree/telemetry">
+    <img src="https://raw.githubusercontent.com/victory-c/victory-c/telemetry/garmin-card.svg" alt="Cycling telemetry from Garmin, synced daily" width="840"/>
+  </a>
+</p>
+
 ---
 
 ### Things I've built
