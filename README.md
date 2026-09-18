@@ -1,7 +1,35 @@
-## Victor Chun
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:150F0B,55:1E1813,100:EFAC44&height=180&section=header&text=Victor%20Chun&fontSize=46&fontColor=EAE6DD&fontAlignY=38&animation=fadeIn&desc=Data%20Science%20%2B%20CogSci%20%40%20UC%20Berkeley%20%E2%80%A2%20Local-first%20tools%20%E2%80%A2%20Open%20source&descSize=17&descAlignY=58&descColor=EFAC44)
 
-DS + CogSci @ UC Berkeley. I build local-first tools — software that runs on your own
-machine, keeps your data there, and automates something I got tired of doing by hand.
+<div align="center">
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=3+PRs+merged+into+garmin_mcp+(1.1k+%E2%98%85);building+local-first+tools+for+AI+agents;fixing+what+Garmin+gets+wrong+about+my+rides)](https://github.com/victory-c)
+
+<br/>
+
+[![garmin_mcp contributor](https://img.shields.io/badge/garmin__mcp_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=150F0B)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
+[![FlowLens](https://img.shields.io/badge/FlowLens-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://sp26datacomp.vercel.app)
+[![Venture Map](https://img.shields.io/badge/Venture_Map-1E1813?style=for-the-badge&logo=leaflet&logoColor=EFAC44)](https://bay-area-venture-map.vercel.app)
+[![Scenario Arena](https://img.shields.io/badge/Scenario_Arena-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://llmorchestration.vercel.app)
+
+</div>
+
+---
+
+<h3 align="center">About</h3>
+
+I study Data Science and Cognitive Science at UC Berkeley. I build local-first tools —
+software that runs on your own machine, keeps your data there, and automates something I
+got tired of doing by hand.
+
+Lately that means two things: tooling around AI coding agents (what they cost, where they
+break), and tooling around my own training data, because I ride a lot and Garmin gets
+more wrong than you'd think.
+
+<p align="center">
+🛠️ Local-first tools &nbsp;•&nbsp; 🤖 AI agent tooling &nbsp;•&nbsp; 🚴 Endurance data &nbsp;•&nbsp; 🔓 Open source
+</p>
+
+---
 
 ### Things I've built
 
@@ -69,6 +97,6 @@ there is that bug and its relatives.
   backend; expired credits or a rate limit meant total failure plus a gateway restart. Adds a
   configurable fallback chain.
 
-### Elsewhere
+<p align="center"><sub>Berkeley, CA — usually on a bike when I'm not here.</sub></p>
 
-Berkeley, CA — usually on a bike when I'm not here.
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:150F0B,55:1E1813,100:EFAC44&height=100&section=footer)
