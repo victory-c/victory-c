@@ -28,7 +28,7 @@ Garmin gets more wrong than you'd think.
 
 <p align="center">
   <a href="telemetry">
-    <img src="telemetry/garmin-card.svg" alt="Cycling telemetry from Garmin, synced daily" width="840"/>
+    <img src="telemetry/garmin-card.svg" alt="Cycling telemetry from Garmin, synced weekly" width="840"/>
   </a>
 </p>
 

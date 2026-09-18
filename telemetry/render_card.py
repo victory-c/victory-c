@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render the Garmin telemetry card for the GitHub profile README.
 
-Input:  data.json  (written by the daily scheduled task from the Garmin MCP)
+Input:  data.json  (written by the weekly scheduled task from the Garmin MCP)
 Output: garmin-card.svg
 
 This script never talks to Garmin and never touches auth tokens. The MCP server
@@ -164,7 +164,7 @@ def render(agg: dict) -> str:
 
     parts.append(
         f'<text x="28" y="{H - 22}" font-family="{MONO}" font-size="10" fill="{MUTED}">'
-        f'road cycling · duplicate watch/head-unit recordings merged · synced daily</text>'
+        f'road cycling · duplicate watch/head-unit recordings merged · synced weekly</text>'
     )
     parts.append("</svg>")
     return "\n".join(parts) + "\n"
