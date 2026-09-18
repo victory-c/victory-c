@@ -9,7 +9,6 @@
 [![garmin_mcp contributor](https://img.shields.io/badge/garmin__mcp_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=150F0B)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
 [![FlowLens](https://img.shields.io/badge/FlowLens-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://sp26datacomp.vercel.app)
 [![Venture Map](https://img.shields.io/badge/Venture_Map-1E1813?style=for-the-badge&logo=leaflet&logoColor=EFAC44)](https://bay-area-venture-map.vercel.app)
-[![Scenario Arena](https://img.shields.io/badge/Scenario_Arena-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://llmorchestration.vercel.app)
 
 </div>
 
