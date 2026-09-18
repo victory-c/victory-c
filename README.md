@@ -27,8 +27,8 @@ Garmin gets more wrong than you'd think.
 </p>
 
 <p align="center">
-  <a href="https://github.com/victory-c/victory-c/tree/telemetry">
-    <img src="https://raw.githubusercontent.com/victory-c/victory-c/telemetry/garmin-card.svg" alt="Cycling telemetry from Garmin, synced daily" width="840"/>
+  <a href="telemetry">
+    <img src="telemetry/garmin-card.svg" alt="Cycling telemetry from Garmin, synced daily" width="840"/>
   </a>
 </p>
 
