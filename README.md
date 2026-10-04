@@ -2,11 +2,12 @@
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=3+PRs+merged+into+garmin_mcp+(1.1k+%E2%98%85);building+tools+and+guardrails+for+AI+agents;fixing+what+Garmin+gets+wrong+about+my+rides)](https://github.com/victory-c)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=3+PRs+merged+into+garmin_mcp+(1.3k+%E2%98%85);building+tools+and+guardrails+for+AI+agents;a+fruit+fly's+whole+brain+riding+a+road+bike)](https://github.com/victory-c)
 
 <br/>
 
 [![garmin_mcp contributor](https://img.shields.io/badge/garmin__mcp_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=150F0B)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
+[![Fly Brain](https://img.shields.io/badge/Fly_Brain-1E1813?style=for-the-badge&logo=pytorch&logoColor=EFAC44)](https://flybrain-play.vercel.app)
 [![FlowLens](https://img.shields.io/badge/FlowLens-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://sp26datacomp.vercel.app)
 [![Venture Map](https://img.shields.io/badge/Venture_Map-1E1813?style=for-the-badge&logo=leaflet&logoColor=EFAC44)](https://bay-area-venture-map.vercel.app)
 
@@ -36,6 +37,12 @@ Garmin gets more wrong than you'd think.
 
 ### Things I've built
 
+**[flybrain-play](https://github.com/victory-c/flybrain-play)** — a fruit fly's whole central
+nervous system (166,700 neurons, male CNS v1.0 connectome) run as a spiking network in PyTorch,
+[learning to ride a road bike](https://flybrain-play.vercel.app/ride/) in side gusts. The
+simulator reproduces Shiu et al. (*Nature* 2024) spike for spike against their Brian2 code, then
+batches many flies on one GPU.
+
 **[token-counter](https://github.com/victory-c/token-counter)** — audits monthly AI coding-agent
 spend across Claude Code, Codex, Cursor, and Gemini, and flags every run that would have been
 fine on a cheaper model.
@@ -50,7 +57,8 @@ before any feature work.
 
 **[cal-dining-scanner](https://github.com/victory-c/cal-dining-scanner)** — watches UC Berkeley
 dining menus for the foods you care about and emails you when they appear. One command to set
-up, runs free on GitHub Actions.
+up, runs free on GitHub Actions. A friend spun it off into
+[Cal-Bite](https://github.com/rileyqzhang/Cal-Bite), a full-stack version.
 
 **[magene-garmin-fix](https://github.com/victory-c/magene-garmin-fix)** — Garmin inflates climb
 10–70× for third-party bike computers by throwing away barometric altitude. This fixes it.
@@ -65,7 +73,7 @@ validator that the writer and the evaluator share.
 
 ### Open source
 
-#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.1k ★, listed contributor*
+#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.3k ★, listed contributor*
 
 Garmin's API returns explicit `null` for sections you have no data in, so `resp.get(k, {})`
 yields `None` — the default only applies when the key is *absent*. Most of my merged work
@@ -76,20 +84,12 @@ there is that bug and its relatives.
 | [**#253**](https://github.com/Taxuspt/garmin_mcp/pull/253) ✅ merged | Five unguarded null-section crashes — HRV baseline, progress-summary `.items()`, the sleep-score chain, body-battery event iteration, and a GraphQL `{"data": null}` that slipped past the existing guard. Each fix ships a regression test feeding the explicit-null payload. |
 | [**#254**](https://github.com/Taxuspt/garmin_mcp/pull/254) ✅ merged | Garmin occasionally stalls a request indefinitely; because every tool calls the client synchronously, one stalled call hung the *whole* MCP server until the client's ~4-minute timeout fired (issue #248). Bounds each proxied call on a daemon worker thread, surfacing a retry-able `TimeoutError` instead. Configurable via `GARMIN_MCP_CALL_TIMEOUT`. |
 | [**#250**](https://github.com/Taxuspt/garmin_mcp/pull/250) ✅ merged | Gear notes never appeared, because the pinned client reads the legacy `filterGear` endpoint and Notes only exists on `/gear/v2/list`. Joins the two — the v2 response hyphenates its UUIDs and the legacy one doesn't, so the join normalizes them first. |
-| [**#276**](https://github.com/Taxuspt/garmin_mcp/pull/276) | Per-sport heart-rate zone reads and writes, via read-modify-write so unrelated sport profiles aren't clobbered. Verified against a live account; documents the quirk that Garmin won't persist a `CUSTOM` calculation method. |
+| [**#334**](https://github.com/Taxuspt/garmin_mcp/pull/334) | An agent could delete Garmin workouts in one call, with no gate. Now the first call returns a preview and `needs_confirmation`; the delete only happens on a second call with `confirm=true`, and each deletion is logged for an audit trail. |
+| [**#375**](https://github.com/Taxuspt/garmin_mcp/pull/375) | Garmin Coach plans came back without their race or schedule — surfaces race name and date, weekly workout count, and remaining workouts, and still omits fields cleanly when `athleteRace` is missing or malformed. |
 | [**#170**](https://github.com/Taxuspt/garmin_mcp/pull/170) | There's a Dockerfile but no published image, so everyone builds locally. Publishes multi-arch (amd64 + arm64) images to GHCR on release — no extra secrets, just `GITHUB_TOKEN`. |
 | [**#167**](https://github.com/Taxuspt/garmin_mcp/pull/167) | The security workflow had a `# Add pip-audit here if desired` placeholder where the dependency scan should be. Wires up `pip-audit` and clears the one CVE it flags — h11 request smuggling (CVE-2025-43859). |
 
-#### [clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev) — *141k ★*
-
-- [**#7672**](https://github.com/clash-verge-rev/clash-verge-rev/pull/7672) — importing a single
-  `vless://` / `trojan://` / `ss://` share link required creating a throwaway subscription and
-  pasting URIs into Edit Proxy. Adds real import.
-- [**#7652**](https://github.com/clash-verge-rev/clash-verge-rev/pull/7652) — every proxy
-  selection rebuilt the entire native tray menu. On profiles with thousands of nodes that meant
-  stalls and memory spikes. Caches menu handles and updates only the two items that changed.
-
-#### [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — *239k ★*
+#### [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — *251k ★*
 
 - [**#64036**](https://github.com/NousResearch/hermes-agent/pull/64036) — reasoning-visibility
   leak on Gemini/Vertex: with `show_reasoning: false`, users still got dozens of raw
@@ -99,6 +99,13 @@ there is that bug and its relatives.
 - [**#68524**](https://github.com/NousResearch/hermes-agent/pull/68524) — `web_extract` had one
   backend; expired credits or a rate limit meant total failure plus a gateway restart. Adds a
   configurable fallback chain.
+
+#### [SpencerLiang0114/RouteCraft](https://github.com/SpencerLiang0114/RouteCraft) — *route planner for running, hiking, and cycling*
+
+- [**#15**](https://github.com/SpencerLiang0114/RouteCraft/pull/15) ✅ merged — session auth,
+  saved routes owned by the user who created them, and share links that expire.
+- [**#14**](https://github.com/SpencerLiang0114/RouteCraft/pull/14) ✅ merged — imperial
+  conversions next to every metric route value.
 
 <p align="center"><sub>Berkeley, CA — usually on a bike when I'm not here.</sub></p>
 
