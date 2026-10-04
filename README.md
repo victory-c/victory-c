@@ -63,6 +63,12 @@ up, runs free on GitHub Actions. A friend spun it off into
 **[magene-garmin-fix](https://github.com/victory-c/magene-garmin-fix)** — Garmin inflates climb
 10–70× for third-party bike computers by throwing away barometric altitude. This fixes it.
 
+**[analyze-cycling-hr-thresholds](https://github.com/victory-c/analyze-cycling-hr-thresholds)** —
+a Codex skill that reconciles Garmin field data with raw CPET gas-exchange data into heart-rate
+thresholds, Garmin-ready zones, and labeled FTP proxies. It analyzes each source on its own and
+refuses the tempting shortcuts — no converting heart rate straight to watts, no treating a lab
+report's conclusion as raw evidence.
+
 **[bay-area-venture-map](https://github.com/victory-c/bay-area-venture-map)** —
 [interactive map](https://bay-area-venture-map.vercel.app) of the Bay Area venture cluster;
 filter by AUM, stage, sector, and check size.
