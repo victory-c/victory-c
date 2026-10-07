@@ -2,12 +2,12 @@
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=3+PRs+merged+into+garmin_mcp+(1.3k+%E2%98%85);building+tools+and+guardrails+for+AI+agents;a+fruit+fly's+whole+brain+riding+a+road+bike)](https://github.com/victory-c)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=a+fruit+fly's+whole+brain+riding+a+road+bike;3+PRs+merged+into+garmin_mcp+(1.3k+%E2%98%85);building+tools+and+guardrails+for+AI+agents)](https://github.com/victory-c)
 
 <br/>
 
+[![Fly Brain](https://img.shields.io/badge/Fly_Brain-1E1813?style=for-the-badge&logo=pytorch&logoColor=EFAC44)](https://fly-brain-bike.vercel.app)
 [![garmin_mcp contributor](https://img.shields.io/badge/garmin__mcp_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=150F0B)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
-[![Fly Brain](https://img.shields.io/badge/Fly_Brain-1E1813?style=for-the-badge&logo=pytorch&logoColor=EFAC44)](https://flybrain-play.vercel.app)
 [![FlowLens](https://img.shields.io/badge/FlowLens-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://sp26datacomp.vercel.app)
 [![Venture Map](https://img.shields.io/badge/Venture_Map-1E1813?style=for-the-badge&logo=leaflet&logoColor=EFAC44)](https://bay-area-venture-map.vercel.app)
 
@@ -37,9 +37,9 @@ Garmin gets more wrong than you'd think.
 
 ### Things I've built
 
-**[flybrain-play](https://github.com/victory-c/flybrain-play)** — a fruit fly's whole central
+**[fly-brain](https://github.com/victory-c/fly-brain)** — a fruit fly's whole central
 nervous system (166,700 neurons, male CNS v1.0 connectome) run as a spiking network in PyTorch,
-[learning to ride a road bike](https://flybrain-play.vercel.app/ride/) in side gusts. The
+[learning to ride a road bike](https://fly-brain-bike.vercel.app/ride/) in side gusts. The
 simulator reproduces Shiu et al. (*Nature* 2024) spike for spike against their Brian2 code, then
 batches many flies on one GPU.
 
