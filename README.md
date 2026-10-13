@@ -2,12 +2,12 @@
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=a+fruit+fly's+whole+brain+riding+a+road+bike;3+PRs+merged+into+garmin_mcp+(1.3k+%E2%98%85);building+tools+and+guardrails+for+AI+agents)](https://github.com/victory-c)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=a+fruit+fly's+whole+brain+riding+a+road+bike;%232+contributor+to+garmin_mcp+(1.3k+%E2%98%85%2C+21+PRs+merged);building+tools+and+guardrails+for+AI+agents)](https://github.com/victory-c)
 
 <br/>
 
 [![Fly Brain](https://img.shields.io/badge/Fly_Brain-1E1813?style=for-the-badge&logo=pytorch&logoColor=EFAC44)](https://fly-brain-bike.vercel.app)
-[![garmin_mcp contributor](https://img.shields.io/badge/garmin__mcp_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=150F0B)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
+[![garmin_mcp #2 contributor](https://img.shields.io/badge/garmin__mcp-%232_contributor-EFAC44?style=for-the-badge&logo=garmin&logoColor=EFAC44&labelColor=1E1813)](https://github.com/Taxuspt/garmin_mcp/graphs/contributors)
 [![FlowLens](https://img.shields.io/badge/FlowLens-1E1813?style=for-the-badge&logo=vercel&logoColor=EFAC44)](https://sp26datacomp.vercel.app)
 [![Venture Map](https://img.shields.io/badge/Venture_Map-1E1813?style=for-the-badge&logo=leaflet&logoColor=EFAC44)](https://bay-area-venture-map.vercel.app)
 
@@ -79,21 +79,34 @@ validator that the writer and the evaluator share.
 
 ### Open source
 
-#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.3k ★, listed contributor*
+#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.3k ★ · #2 contributor · 21 PRs merged*
 
-Garmin's API returns explicit `null` for sections you have no data in, so `resp.get(k, {})`
-yields `None` — the default only applies when the key is *absent*. Most of my merged work
-there is that bug and its relatives.
+The most-used MCP server for Garmin Connect. Behind the maintainer, I'm its largest contributor:
+21 merged PRs (+3.3k lines) spanning auth, FIT decoding, training analytics, workout scheduling
+and write safety. The pattern is the same throughout: find where an agent silently gets a
+*plausible but wrong* answer, prove it with a real payload, and ship the fix with a regression test.
 
 | | |
 |---|---|
-| [**#253**](https://github.com/Taxuspt/garmin_mcp/pull/253) ✅ merged | Five unguarded null-section crashes — HRV baseline, progress-summary `.items()`, the sleep-score chain, body-battery event iteration, and a GraphQL `{"data": null}` that slipped past the existing guard. Each fix ships a regression test feeding the explicit-null payload. |
-| [**#254**](https://github.com/Taxuspt/garmin_mcp/pull/254) ✅ merged | Garmin occasionally stalls a request indefinitely; because every tool calls the client synchronously, one stalled call hung the *whole* MCP server until the client's ~4-minute timeout fired (issue #248). Bounds each proxied call on a daemon worker thread, surfacing a retry-able `TimeoutError` instead. Configurable via `GARMIN_MCP_CALL_TIMEOUT`. |
-| [**#250**](https://github.com/Taxuspt/garmin_mcp/pull/250) ✅ merged | Gear notes never appeared, because the pinned client reads the legacy `filterGear` endpoint and Notes only exists on `/gear/v2/list`. Joins the two — the v2 response hyphenates its UUIDs and the legacy one doesn't, so the join normalizes them first. |
-| [**#334**](https://github.com/Taxuspt/garmin_mcp/pull/334) | An agent could delete Garmin workouts in one call, with no gate. Now the first call returns a preview and `needs_confirmation`; the delete only happens on a second call with `confirm=true`, and each deletion is logged for an audit trail. |
-| [**#375**](https://github.com/Taxuspt/garmin_mcp/pull/375) | Garmin Coach plans came back without their race or schedule — surfaces race name and date, weekly workout count, and remaining workouts, and still omits fields cleanly when `athleteRace` is missing or malformed. |
-| [**#170**](https://github.com/Taxuspt/garmin_mcp/pull/170) | There's a Dockerfile but no published image, so everyone builds locally. Publishes multi-arch (amd64 + arm64) images to GHCR on release — no extra secrets, just `GITHUB_TOKEN`. |
-| [**#167**](https://github.com/Taxuspt/garmin_mcp/pull/167) | The security workflow had a `# Add pip-audit here if desired` placeholder where the dependency scan should be. Wires up `pip-audit` and clears the one CVE it flags — h11 request smuggling (CVE-2025-43859). |
+| [**#437**](https://github.com/Taxuspt/garmin_mcp/pull/437) | **Analytics assumed 1 record = 1 second.** With smart recording (a record every 1–8 s), a 20-min best of 300 W came out as 167 W, and climb VAM was off by 3×. Power curves, climbs and HR drift now use real timestamps. |
+| [**#423**](https://github.com/Taxuspt/garmin_mcp/pull/423) | **Told the agent a retry was safe when it wasn't.** A 5xx that arrives *after* a write was sent may already be committed. It's now marked `write_committed: "unknown"`, so an agent checks before it double-logs. |
+| [**#419**](https://github.com/Taxuspt/garmin_mcp/pull/419) | **Logged into the wrong account.** With `GARMINTOKENS` set, password login silently reused another profile's tokens and wrote them into the new directory. Credentials now always win. |
+| [**#418**](https://github.com/Taxuspt/garmin_mcp/pull/418) | **Di2 shifts decoded with the bytes swapped**, so a 50×21 read as "50/2t". The tests passed only because the mocks used the same wrong layout. Rebuilt against the FIT profile, and added L/R power balance. |
+| [**#254**](https://github.com/Taxuspt/garmin_mcp/pull/254) | **One stalled Garmin call froze the whole server** for about 4 minutes. Every proxied call is now bounded on a worker thread, with a timeout an agent can retry. |
+| [**#426**](https://github.com/Taxuspt/garmin_mcp/pull/426) | **Memory leak in a login failure.** Re-raising a stored exception grew its traceback without bound: 3,000 frames after 1,000 tool calls. |
+
+<details>
+<summary>All 15 others</summary>
+
+- **Courses** [#435](https://github.com/Taxuspt/garmin_mcp/pull/435): 5 of 8 sport types were mapped wrong (a gravel course saved as *track running*), GPX output was unescaped, and deleting now needs confirmation.
+- **Analysis** [#436](https://github.com/Taxuspt/garmin_mcp/pull/436): bike power had leaked into running power curves, and HR drift is now labelled by its sign.
+- **Workouts** [#433](https://github.com/Taxuspt/garmin_mcp/pull/433) · [#434](https://github.com/Taxuspt/garmin_mcp/pull/434): one failed `schedule_week` entry no longer hides the ones that succeeded; strict date validation and full library paging.
+- **Health, training and weight** [#429](https://github.com/Taxuspt/garmin_mcp/pull/429) · [#427](https://github.com/Taxuspt/garmin_mcp/pull/427) · [#430](https://github.com/Taxuspt/garmin_mcp/pull/430): readiness fields, lactate-threshold history, weigh-in timestamps, and deletes that silently did nothing.
+- **Gear, devices, PRs and nutrition** [#250](https://github.com/Taxuspt/garmin_mcp/pull/250) · [#431](https://github.com/Taxuspt/garmin_mcp/pull/431) · [#424](https://github.com/Taxuspt/garmin_mcp/pull/424) · [#432](https://github.com/Taxuspt/garmin_mcp/pull/432) · [#428](https://github.com/Taxuspt/garmin_mcp/pull/428): gear notes from the v2 API, real activity typeIds, the actual solar payload, when each personal record was set, and rename-safe food edits.
+- **Null-safety** [#253](https://github.com/Taxuspt/garmin_mcp/pull/253): Garmin sends an explicit `null` for empty sections, so `.get(k, {})` returns `None`. Fixed five crashes of this kind, each with a regression test.
+- **Auth and test infrastructure** [#425](https://github.com/Taxuspt/garmin_mcp/pull/425) · [#416](https://github.com/Taxuspt/garmin_mcp/pull/416): token verification for profiles without a full name, and live e2e tests made opt-in.
+
+</details>
 
 #### [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — *251k ★*
 
