@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=a+fruit+fly's+whole+brain+riding+a+road+bike;%232+contributor+to+garmin_mcp+(1.3k+%E2%98%85%2C+21+PRs+merged);building+tools+and+guardrails+for+AI+agents)](https://github.com/victory-c)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=2200&color=EFAC44&center=true&vCenter=true&width=620&lines=a+fruit+fly's+whole+brain+riding+a+road+bike;%232+contributor+to+garmin_mcp+(1.3k+%E2%98%85);building+tools+and+guardrails+for+AI+agents)](https://github.com/victory-c)
 
 <br/>
 
@@ -79,52 +79,8 @@ validator that the writer and the evaluator share.
 
 ### Open source
 
-#### [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp) — *1.3k ★ · #2 contributor · 21 PRs merged*
-
-The most-used MCP server for Garmin Connect. Behind the maintainer, I'm its largest contributor:
-21 merged PRs (+3.3k lines) spanning auth, FIT decoding, training analytics, workout scheduling
-and write safety. The pattern is the same throughout: find where an agent silently gets a
-*plausible but wrong* answer, prove it with a real payload, and ship the fix with a regression test.
-
-| | |
-|---|---|
-| [**#437**](https://github.com/Taxuspt/garmin_mcp/pull/437) | **Analytics assumed 1 record = 1 second.** With smart recording (a record every 1–8 s), a 20-min best of 300 W came out as 167 W, and climb VAM was off by 3×. Power curves, climbs and HR drift now use real timestamps. |
-| [**#423**](https://github.com/Taxuspt/garmin_mcp/pull/423) | **Told the agent a retry was safe when it wasn't.** A 5xx that arrives *after* a write was sent may already be committed. It's now marked `write_committed: "unknown"`, so an agent checks before it double-logs. |
-| [**#419**](https://github.com/Taxuspt/garmin_mcp/pull/419) | **Logged into the wrong account.** With `GARMINTOKENS` set, password login silently reused another profile's tokens and wrote them into the new directory. Credentials now always win. |
-| [**#418**](https://github.com/Taxuspt/garmin_mcp/pull/418) | **Di2 shifts decoded with the bytes swapped**, so a 50×21 read as "50/2t". The tests passed only because the mocks used the same wrong layout. Rebuilt against the FIT profile, and added L/R power balance. |
-| [**#254**](https://github.com/Taxuspt/garmin_mcp/pull/254) | **One stalled Garmin call froze the whole server** for about 4 minutes. Every proxied call is now bounded on a worker thread, with a timeout an agent can retry. |
-| [**#426**](https://github.com/Taxuspt/garmin_mcp/pull/426) | **Memory leak in a login failure.** Re-raising a stored exception grew its traceback without bound: 3,000 frames after 1,000 tool calls. |
-
-<details>
-<summary>All 15 others</summary>
-
-- **Courses** [#435](https://github.com/Taxuspt/garmin_mcp/pull/435): 5 of 8 sport types were mapped wrong (a gravel course saved as *track running*), GPX output was unescaped, and deleting now needs confirmation.
-- **Analysis** [#436](https://github.com/Taxuspt/garmin_mcp/pull/436): bike power had leaked into running power curves, and HR drift is now labelled by its sign.
-- **Workouts** [#433](https://github.com/Taxuspt/garmin_mcp/pull/433) · [#434](https://github.com/Taxuspt/garmin_mcp/pull/434): one failed `schedule_week` entry no longer hides the ones that succeeded; strict date validation and full library paging.
-- **Health, training and weight** [#429](https://github.com/Taxuspt/garmin_mcp/pull/429) · [#427](https://github.com/Taxuspt/garmin_mcp/pull/427) · [#430](https://github.com/Taxuspt/garmin_mcp/pull/430): readiness fields, lactate-threshold history, weigh-in timestamps, and deletes that silently did nothing.
-- **Gear, devices, PRs and nutrition** [#250](https://github.com/Taxuspt/garmin_mcp/pull/250) · [#431](https://github.com/Taxuspt/garmin_mcp/pull/431) · [#424](https://github.com/Taxuspt/garmin_mcp/pull/424) · [#432](https://github.com/Taxuspt/garmin_mcp/pull/432) · [#428](https://github.com/Taxuspt/garmin_mcp/pull/428): gear notes from the v2 API, real activity typeIds, the actual solar payload, when each personal record was set, and rename-safe food edits.
-- **Null-safety** [#253](https://github.com/Taxuspt/garmin_mcp/pull/253): Garmin sends an explicit `null` for empty sections, so `.get(k, {})` returns `None`. Fixed five crashes of this kind, each with a regression test.
-- **Auth and test infrastructure** [#425](https://github.com/Taxuspt/garmin_mcp/pull/425) · [#416](https://github.com/Taxuspt/garmin_mcp/pull/416): token verification for profiles without a full name, and live e2e tests made opt-in.
-
-</details>
-
-#### [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — *251k ★*
-
-- [**#64036**](https://github.com/NousResearch/hermes-agent/pull/64036) — reasoning-visibility
-  leak on Gemini/Vertex: with `show_reasoning: false`, users still got dozens of raw
-  thought-summary blocks. Two causes — effort and visibility were coupled in the request
-  builder, and Vertex returns summaries *untagged* unless you set `thought_tag_marker`, so
-  nothing downstream could key on them. Splits the two knobs to match Google's own API.
-- [**#68524**](https://github.com/NousResearch/hermes-agent/pull/68524) — `web_extract` had one
-  backend; expired credits or a rate limit meant total failure plus a gateway restart. Adds a
-  configurable fallback chain.
-
-#### [SpencerLiang0114/RouteCraft](https://github.com/SpencerLiang0114/RouteCraft) — *route planner for running, hiking, and cycling*
-
-- [**#15**](https://github.com/SpencerLiang0114/RouteCraft/pull/15) ✅ merged — session auth,
-  saved routes owned by the user who created them, and share links that expire.
-- [**#14**](https://github.com/SpencerLiang0114/RouteCraft/pull/14) ✅ merged — imperial
-  conversions next to every metric route value.
+- **[Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp)** — MCP server for Garmin Connect · 1.3k ★ · **#2 contributor**, 24 PRs merged
+- **[SpencerLiang0114/RouteCraft](https://github.com/SpencerLiang0114/RouteCraft)** — route planner for running, hiking, and cycling · 12 PRs merged
 
 <p align="center"><sub>Berkeley, CA — usually on a bike when I'm not here.</sub></p>
 
