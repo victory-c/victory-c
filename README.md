@@ -73,7 +73,7 @@ report's conclusion as raw evidence.
 [interactive map](https://bay-area-venture-map.vercel.app) of the Bay Area venture cluster;
 filter by AUM, stage, sector, and check size.
 
-**[qosmic-audit-harness](https://github.com/victory-c/qosmic-audit-harness)** — contracts-first
+**[storefront-audit-harness](https://github.com/victory-c/storefront-audit-harness)** — contracts-first
 agent harness: every claim in a generated audit must cite a real crawled page, enforced by a
 validator that the writer and the evaluator share.
 
